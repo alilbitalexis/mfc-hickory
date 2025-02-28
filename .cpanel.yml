@@ -9,4 +9,4 @@ deployment:
     - /bin/cp *.png $DEPLOYPATH
     - /bin/cp *.ico $DEPLOYPATH
     - /bin/cp *.svg $DEPLOYPATH
-    - /bin/cp /_next/static/* $DEPLOYPATH
+    - /bin/cp -R /_next $DEPLOYPATH
