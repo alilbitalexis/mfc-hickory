@@ -756,7 +756,7 @@ main {
       }
 
       .banner-text {
-        color: #4f1d1e;
+        color: #2a0f10;
       }
 
       img {
@@ -765,7 +765,7 @@ main {
         height: 140%;
         top: -20%;
         margin-left: 2rem;
-        opacity: 0.4;
+        opacity: 0.25;
 
         &:last-of-type {
           right: 2rem;
