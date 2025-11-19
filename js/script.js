@@ -42,14 +42,13 @@ console.log(today >= tgEarlyDate);
 console.log(today <= new Date(thanksgivingDates[0]));
 console.log(today);
 
-if (!!banner) {
-  if (formatDate(today) === formatDate(new Date(inclementWeatherDate))) {
-    banner.classList.add("active", "inclement-weather");
-    document.querySelector(".weather-date").innerHTML = inclementWeatherDate;
-  } else if (today >= tgEarlyDate && today <= new Date(thanksgivingDates[1])) {
-    banner.classList.add("active", "thanksgiving");
-    document.querySelector(".banner-text").innerHTML = `We will be closed on ${thanksgivingDates.join(" and ")} for Thanksgiving.`;
-  }
+if (formatDate(today) === formatDate(new Date(inclementWeatherDate))) {
+  banner.classList.add("active", "inclement-weather");
+  document.querySelector(".weather-date").innerHTML = inclementWeatherDate;
+} else if (today >= tgEarlyDate && today <= new Date(thanksgivingDates[1])) {
+  banner.classList.add("active", "thanksgiving");
+  document.querySelector(".banner-text").innerHTML = `We will be closed on ${thanksgivingDates.join(" and ")} for Thanksgiving.`;
+  document.querySelector(".holiday-hours").innerHTML = `*Closed ${thanksgivingDates.join(" and ")}`;
 }
 
 // change menu viewed

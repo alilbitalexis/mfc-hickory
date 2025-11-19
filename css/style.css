@@ -1115,26 +1115,35 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  &.contact section.hours .hour-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.5rem 0;
-    max-width: 35rem;
-    width: 100%;
-  }
-  &.contact section.hours .hour-row .day {
-    font-weight: 700;
-    font-size: 1.8rem;
-    padding: 0 2rem;
-    font-family: Grandstander;
-    align-self: flex-end;
-  }
-  &.contact section.hours .hour-row .time {
-    display: flex;
-    justify-content: flex-start;
-    flex: 0 0 50%;
+
+    .holiday-hours {
+      margin: -1rem 0 1rem;
+      color: #f6ad9b;
+      font-style: italic;
+    }
+
+    .hour-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      max-width: 35rem;
+      width: 100%;
+
+      .day {
+        font-weight: 700;
+        font-size: 1.8rem;
+        padding: 0 2rem;
+        font-family: Grandstander;
+        align-self: flex-end;
+      }
+
+      .time {
+        display: flex;
+        justify-content: flex-start;
+        flex: 0 0 50%;
+      }
+    }
   }
   &.contact section.contact .contact-row {
     display: flex;
