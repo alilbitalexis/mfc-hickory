@@ -22,12 +22,16 @@ const date = new Date();
 const currentYear = (document.querySelector(".current-year").innerHTML = date.getFullYear());
 
 // add inclement weather banner based upon weather date
+const banner = document.querySelector(".banner");
+const today = new Date();
+
 const inclementWeatherDate = "November 4, 2025";
-const thanksgivingDates = ["November 27, 2025", "November 28, 2025"];
-const tgEarlyDate = new Date(thanksgivingDates[0]);
-new Date(tgEarlyDate.setDate(tgEarlyDate.getDate() - 14));
-console.log(new Date(thanksgivingDates[0]));
-console.log(tgEarlyDate);
+const holidays = {
+  thanksgiving: ["November 27, 2025", "November 28, 2025"],
+  christmas: ["December 25, 2025", "January 5, 2026"],
+};
+const tgEarlyDate = getEarlyDate("thanksgiving");
+const xmasEarlyDate = getEarlyDate("christmas");
 
 function formatDate(date) {
   return Intl.DateTimeFormat("en-US", {
@@ -36,19 +40,24 @@ function formatDate(date) {
   }).format(date);
 }
 
-const banner = document.querySelector(".banner");
-const today = new Date();
-console.log(today >= tgEarlyDate);
-console.log(today <= new Date(thanksgivingDates[0]));
-console.log(today);
+function getEarlyDate(holiday) {
+  const temp = new Date(holidays[holiday][0]);
+  return new Date(temp.setDate(temp.getDate() - 14));
+}
+
+function setHolidayMessage(holiday, reason, extraMessage) {
+  banner.classList.add("active", holiday);
+  document.querySelector(".banner-text").innerHTML = `We will be closed from ${holidays[holiday].join(" to ")} for ${reason}. ${extraMessage ?? ""}`;
+  document.querySelector(".holiday-hours").innerHTML = `*Closed ${holidays[holiday].join(" to ")}`;
+}
 
 if (formatDate(today) === formatDate(new Date(inclementWeatherDate))) {
   banner.classList.add("active", "inclement-weather");
   document.querySelector(".weather-date").innerHTML = inclementWeatherDate;
-} else if (today >= tgEarlyDate && today <= new Date(thanksgivingDates[1])) {
-  banner.classList.add("active", "thanksgiving");
-  document.querySelector(".banner-text").innerHTML = `We will be closed on ${thanksgivingDates.join(" and ")} for Thanksgiving.`;
-  document.querySelector(".holiday-hours").innerHTML = `*Closed ${thanksgivingDates.join(" and ")}`;
+} else if (today >= tgEarlyDate && today <= new Date(holidays.thanksgiving[1])) {
+  setHolidayMessage("thanksgiving", "Thanksgiving");
+} else if (today >= xmasEarlyDate && today <= new Date(holidays.christmas[1])) {
+  setHolidayMessage("christmas", "Christmas and floor repairs", "We wish you a safe and happy holiday season!");
 }
 
 // change menu viewed

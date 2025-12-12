@@ -726,13 +726,15 @@ main {
     svg {
       position: absolute;
       z-index: 1;
-      font-size: 12rem;
-      top: -2rem;
-      left: 2rem;
+      height: 60%;
+      max-height: 8rem;
+      top: 20%;
+      left: 1rem;
     }
 
-    svg.fa-cloud-showers-heavy {
-      right: 2rem;
+    svg.fa-cloud-showers-heavy,
+    svg.christmas:last-of-type {
+      right: 1rem;
       left: auto;
     }
 
@@ -770,6 +772,42 @@ main {
         &:last-of-type {
           right: 2rem;
         }
+      }
+    }
+
+    &.christmas {
+      background-color: #2c6f20;
+
+      svg {
+        path {
+          fill: #4b963e;
+        }
+        &.weather {
+          display: none;
+        }
+
+        &.christmas:last-of-type {
+          right: 3rem;
+          left: auto;
+        }
+      }
+
+      .banner-text {
+        color: white;
+      }
+
+      img {
+        /* position: absolute;
+        width: auto;
+        height: 140%;
+        top: -20%;
+        margin-left: 2rem;
+        opacity: 0.25;
+
+        &:last-of-type {
+          right: 2rem;
+        } */
+        display: none;
       }
     }
   }
