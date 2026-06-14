@@ -16,22 +16,23 @@ myDiv.addEventListener("click", function () {
   nav.classList.toggle("open");
 });
 
-const date = new Date();
-
-// add current year to footer
-const currentYear = (document.querySelector(".current-year").innerHTML = date.getFullYear());
-
 // add inclement weather banner based upon weather date
 const banner = document.querySelector(".banner");
 const today = new Date();
+const currentYear = today.getFullYear();
+
+// add current year to footer
+document.querySelector(".current-year").innerHTML = currentYear;
 
 const inclementWeatherDate = "November 4, 2025";
 const holidays = {
-  thanksgiving: ["November 27, 2025", "November 28, 2025"],
-  christmas: ["December 25, 2025", "January 5, 2026"],
+  thanksgiving: [`November 27, ${currentYear}`, `November 28, ${currentYear}`],
+  christmas: [`December 25, ${currentYear}`, `January 5, ${currentYear + 1}`],
+  independence: [`July 4, ${currentYear}`],
 };
 const tgEarlyDate = getEarlyDate("thanksgiving");
 const xmasEarlyDate = getEarlyDate("christmas");
+const indEarlyDate = getEarlyDate("independence");
 
 function formatDate(date) {
   return Intl.DateTimeFormat("en-US", {
@@ -47,7 +48,8 @@ function getEarlyDate(holiday) {
 
 function setHolidayMessage(holiday, reason, extraMessage) {
   banner.classList.add("active", holiday);
-  document.querySelector(".banner-text").innerHTML = `We will be closed from ${holidays[holiday].join(" to ")} for ${reason}. ${extraMessage ?? ""}`;
+  document.querySelector(".banner-text").innerHTML =
+    `We will be closed ${holidays[holiday][1] ? `from ${holidays[holiday].join(" to ")}` : `on ${holidays[holiday][0]}`} for ${reason}. ${extraMessage ?? ""}`;
   document.querySelector(".holiday-hours").innerHTML = `*Closed ${holidays[holiday].join(" to ")}`;
 }
 
@@ -58,6 +60,8 @@ if (formatDate(today) === formatDate(new Date(inclementWeatherDate))) {
   setHolidayMessage("thanksgiving", "Thanksgiving");
 } else if (today >= xmasEarlyDate && today <= new Date(holidays.christmas[1])) {
   setHolidayMessage("christmas", "Christmas and floor repairs", "We wish you a safe and happy holiday season!");
+} else if (today >= indEarlyDate && (today <= new Date(holidays.independence[1]) || holidays.independence.length === 1)) {
+  setHolidayMessage("independence", "Independence Day");
 }
 
 // change menu viewed
@@ -68,5 +72,5 @@ menuButtons.forEach((mb) =>
       menuButtons.forEach((mb2) => mb2.classList.toggle("active"));
       document.querySelectorAll(".left-menu, .right-menu").forEach((menu) => menu.classList.toggle("active"));
     }
-  })
+  }),
 );

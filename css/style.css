@@ -782,11 +782,47 @@ main {
         path {
           fill: #4b963e;
         }
-        &.weather {
+        &:not(.christmas) {
           display: none;
         }
 
         &.christmas:last-of-type {
+          right: 3rem;
+          left: auto;
+        }
+      }
+
+      .banner-text {
+        color: white;
+      }
+
+      img {
+        /* position: absolute;
+        width: auto;
+        height: 140%;
+        top: -20%;
+        margin-left: 2rem;
+        opacity: 0.25;
+
+        &:last-of-type {
+          right: 2rem;
+        } */
+        display: none;
+      }
+    }
+
+    &.independence {
+      background-color: #006;
+
+      svg {
+        path {
+          fill: #f66;
+        }
+        &:not(.independence) {
+          display: none;
+        }
+
+        &.independence:last-of-type {
           right: 3rem;
           left: auto;
         }
