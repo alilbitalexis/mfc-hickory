@@ -28,7 +28,7 @@ const inclementWeatherDate = "November 4, 2025";
 const holidays = {
   thanksgiving: [`November 27, ${currentYear}`, `November 28, ${currentYear}`],
   christmas: [`December 25, ${currentYear}`, `January 5, ${currentYear + 1}`],
-  independence: [`July 4, ${currentYear}`],
+  independence: [`July 4, ${currentYear}`, `July 4, ${currentYear}`],
 };
 const tgEarlyDate = getEarlyDate("thanksgiving");
 const xmasEarlyDate = getEarlyDate("christmas");
